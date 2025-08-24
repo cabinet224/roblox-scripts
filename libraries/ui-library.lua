@@ -1255,7 +1255,8 @@ do
                 wait(0.2);
 
                 local Event;
-                Event = InputService.InputBegan:Connect(function(Input)
+                Event = InputService.InputBegan:Connect(function(Input, GameProcessed)
+                    if GameProcessed then return end
                     local Key;
 
                     if Input.UserInputType == Enum.UserInputType.Keyboard then
@@ -1284,7 +1285,8 @@ do
             end;
         end);
 
-        Library:GiveSignal(InputService.InputBegan:Connect(function(Input)
+        Library:GiveSignal(InputService.InputBegan:Connect(function(Input, GameProcessed)
+            if GameProcessed then return end
             if (not Picking) then
                 if KeyPicker.Mode == 'Toggle' then
                     local Key = KeyPicker.Value;
