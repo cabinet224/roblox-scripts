@@ -38,7 +38,7 @@ local Library = {
     OutlineColor = Color3.fromRGB(60, 60, 60);
     RiskColor = Color3.fromRGB(255, 60, 60);
     Black = Color3.new(0, 0, 0);
-    Font = Enum.Font.GothamBold;
+    Font = Enum.Font.Arimo;
 
     OpenedFrames = {};
     DependencyBoxes = {};
