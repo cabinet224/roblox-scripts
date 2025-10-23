@@ -3533,8 +3533,8 @@ function Library:CreateWindow(...)
         or Desc:IsA('TextBox')
         or Desc:IsA('Frame')
         or Desc:IsA('ScrollingFrame') then
-
-        Desc.BackgroundTransparency = 0.05
+            Desc.BackgroundTransparency = 0.05
+        end
     end
 
     local TransparencyCache = {};
