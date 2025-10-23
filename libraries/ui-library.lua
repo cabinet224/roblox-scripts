@@ -163,55 +163,39 @@ function Library:CreateLabel(Properties, IsHud)
 end;
 
 function Library:MakeDraggable(Instance, Cutoff)
-    Instance.Active = true
-
-    local Dragging = false
-    local DragStart, StartPos
+    Instance.Active = true;
 
     Instance.InputBegan:Connect(function(Input)
         if Input.UserInputType == Enum.UserInputType.MouseButton1 then
-            local Mouse = InputService:GetMouseLocation()
             local ObjPos = Vector2.new(
                 Mouse.X - Instance.AbsolutePosition.X,
                 Mouse.Y - Instance.AbsolutePosition.Y
-            )
+            );
 
             if ObjPos.Y > (Cutoff or 40) then
-                return
-            end
+                return;
+            end;
 
-            Dragging = true
-            DragStart = Mouse
-            StartPos = Instance.Position
-        end
+            while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+                local NewPos = UDim2.new(
+                    0,
+                    Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
+                    0,
+                    Mouse.Y - ObjPos.Y + (Instance.Size.Y.Offset * Instance.AnchorPoint.Y)
+                );
+
+                local Tween = TweenService:Create(
+                    Instance,
+                    TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+                    { Position = NewPos }
+                )
+                Tween:Play()
+
+                RenderStepped:Wait();
+            end;
+        end;
     end)
-
-    Instance.InputEnded:Connect(function(Input)
-        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
-            Dragging = false
-        end
-    end)
-
-    RunService.RenderStepped:Connect(function()
-        if Dragging then
-            local Mouse = InputService:GetMouseLocation()
-            local Delta = Mouse - DragStart
-            local NewPos = UDim2.new(
-                StartPos.X.Scale,
-                StartPos.X.Offset + Delta.X,
-                StartPos.Y.Scale,
-                StartPos.Y.Offset + Delta.Y
-            )
-
-            local Tween = TweenService:Create(
-                Instance,
-                TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                { Position = NewPos }
-            )
-            Tween:Play()
-        end
-    end)
-end
+end;
 
 function Library:AddToolTip(InfoStr, HoverInstance)
     local X, Y = Library:GetTextBounds(InfoStr, Library.Font, 14);
