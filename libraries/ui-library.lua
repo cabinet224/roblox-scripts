@@ -31,14 +31,14 @@ local Library = {
 
     HudRegistry = {};
 
-    FontColor = Color3.fromRGB(255, 255, 255),
-    MainColor = Color3.fromRGB(32, 32, 36),
-    BackgroundColor = Color3.fromRGB(20, 20, 24),
-    AccentColor = Color3.fromRGB(255, 110, 150),
-    OutlineColor = Color3.fromRGB(90, 90, 95),
-    RiskColor = Color3.fromRGB(255, 69, 58),
+    FontColor = Color3.fromRGB(245, 245, 245),
+    MainColor = Color3.fromRGB(28, 28, 30),
+    BackgroundColor = Color3.fromRGB(18, 18, 20),
+    AccentColor = Color3.fromRGB(100, 200, 255),
+    OutlineColor = Color3.fromRGB(70, 70, 75),
+    RiskColor = Color3.fromRGB(255, 59, 48),
     Black = Color3.new(0, 0, 0),
-    Font = Enum.Font.GothamSemibold,
+    Font = Enum.Font.Gotham,
 
     OpenedFrames = {};
     DependencyBoxes = {};
@@ -3526,6 +3526,16 @@ function Library:CreateWindow(...)
         Modal = false;
         Parent = ScreenGui;
     });
+
+    for _, Desc in next, Outer:GetDescendants() do
+        if Desc:IsA('ImageLabel')
+        or Desc:IsA('TextLabel')
+        or Desc:IsA('TextBox')
+        or Desc:IsA('Frame')
+        or Desc:IsA('ScrollingFrame') then
+
+        Desc.BackgroundTransparency = 0.05
+    end
 
     local TransparencyCache = {};
     local Toggled = false;
