@@ -32,11 +32,11 @@ local Library = {
     HudRegistry = {};
 
     FontColor = Color3.fromRGB(245, 245, 245);
-    MainColor = Color3.fromRGB(28, 28, 30);
-    BackgroundColor = Color3.fromRGB(20, 20, 22);
-    AccentColor = Color3.fromRGB(180, 180, 200);
-    OutlineColor = Color3.fromRGB(70, 70, 75);
-    RiskColor = Color3.fromRGB(255, 59, 48);
+    MainColor = Color3.fromRGB(60, 120, 40);
+    BackgroundColor = Color3.fromRGB(30, 50, 20);
+    AccentColor = Color3.fromRGB(200, 180, 50);
+    OutlineColor = Color3.fromRGB(40, 80, 30);
+    RiskColor = Color3.fromRGB(220, 50, 50);
     Black = Color3.new(0, 0, 0);
     Font = Enum.Font.Gotham;
 
@@ -3533,8 +3533,8 @@ function Library:CreateWindow(...)
         or Desc:IsA('TextBox')
         or Desc:IsA('Frame')
         or Desc:IsA('ScrollingFrame') then
-            if Desc.BackgroundTransparency == 1 then
-                Desc.BackgroundTransparency = 0.05
+            if Desc.BackgroundTransparency == 0 then
+                Desc.BackgroundTransparency = 0.3
             end
         end
     end
