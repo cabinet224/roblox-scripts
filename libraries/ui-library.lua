@@ -194,7 +194,7 @@ function Library:MakeDraggable(Instance, Cutoff)
 
     RunService.RenderStepped:Connect(function()
         if Dragging then
-            local Mouse = UserInputService:GetMouseLocation()
+            local Mouse = InputService:GetMouseLocation()
             local Delta = Mouse - DragStart
             local NewPos = UDim2.new(
                 StartPos.X.Scale,
