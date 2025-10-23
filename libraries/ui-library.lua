@@ -32,10 +32,10 @@ local Library = {
     HudRegistry = {};
 
     FontColor = Color3.fromRGB(245, 245, 245);
-    MainColor = Color3.fromRGB(60, 120, 40);
-    BackgroundColor = Color3.fromRGB(30, 50, 20);
-    AccentColor = Color3.fromRGB(200, 180, 50);
-    OutlineColor = Color3.fromRGB(40, 80, 30);
+    MainColor = Color3.fromRGB(40, 40, 40);
+    BackgroundColor = Color3.fromRGB(24, 24, 24);
+    AccentColor = Color3.fromRGB(80, 160, 50);
+    OutlineColor = Color3.fromRGB(60, 60, 60);
     RiskColor = Color3.fromRGB(220, 50, 50);
     Black = Color3.new(0, 0, 0);
     Font = Enum.Font.Gotham;
@@ -3526,18 +3526,6 @@ function Library:CreateWindow(...)
         Modal = false;
         Parent = ScreenGui;
     });
-
-    for _, Desc in pairs(Outer:GetDescendants()) do
-        if Desc:IsA('ImageLabel')
-        or Desc:IsA('TextLabel')
-        or Desc:IsA('TextBox')
-        or Desc:IsA('Frame')
-        or Desc:IsA('ScrollingFrame') then
-            if Desc.BackgroundTransparency == 0 then
-                Desc.BackgroundTransparency = 0.3
-            end
-        end
-    end
 
     local TransparencyCache = {};
     local Toggled = false;
