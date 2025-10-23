@@ -3527,7 +3527,7 @@ function Library:CreateWindow(...)
         Parent = ScreenGui;
     });
 
-    for _, Desc in next, Outer:GetDescendants() do
+    for _, Desc in pairs(Outer:GetDescendants()) do
         if Desc:IsA('ImageLabel')
         or Desc:IsA('TextLabel')
         or Desc:IsA('TextBox')
